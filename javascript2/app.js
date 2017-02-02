@@ -1,7 +1,13 @@
 (function(){
 	var app=angular.module('apka',['ngSanitize','ngRoute']);
+
+app.controller('mainctrl',['$scope','routetest',function($scope,routetest){
+	$scope.routetest=routetest;
+}])
+
+
 	
-app.controller('mainctrl', function($scope,$filter,Agnd){
+app.controller('Formctrl', function($scope,$filter,Agnd){
 
 
 $scope.typy=["TEXT (pole tekstowe)","PASSWORD (hasło)","CHECKBOX (pole wyboru)",
@@ -17,7 +23,39 @@ $scope.placetooltip=["top","bottom","right","left"];
 
 $scope.agnd=Agnd;	
 
+	/*$(".sidebar-navigation ul:first-child li").click(function(){	
+		$(this).addClass("active");
+		$(".sidebar-navigation ul:nth-child(2) li").removeClass("active");
+		$(".sidebar-navigation ul:nth-child(3) li").removeClass("active");
+	})
+
+	$(".sidebar-navigation ul:nth-child(2) li").click(function(){	
+		$(this).addClass("active");
+		$(".sidebar-navigation ul li:first-child").removeClass("active");
+		$(".sidebar-navigation ul li:nth-child(3)").removeClass("active");
+	})
+
+	$(".sidebar-navigation ul:nth-child(3) li").click(function(){	
+		$(this).addClass("active");
+		$(".sidebar-navigation ul li:nth-child(2)").removeClass("active");
+		$(".sidebar-navigation ul li:first-child").removeClass("active");
+	})*/
+
+
+
+
 });
+
+app.factory('routetest', ['$location', function($location){
+		return {
+			
+			isActive:function(location){
+				return (-1!==$location.path().indexOf(location));
+			}	
+		};
+}])
+
+
 
 app.config(['$routeProvider',function($routeProvider){
 
@@ -329,6 +367,7 @@ app.service('Agnd', function(){
 	        if (array.length > index)
 	            array.splice(index, 1);
     	};
+
 
    		 this.usunsaving=function(nr){        
         		this.removeObjectFromArray(this.calyform,nr);        

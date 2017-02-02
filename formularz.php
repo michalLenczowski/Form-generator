@@ -1,5 +1,5 @@
 <div class="row">                        
-                            <div class="flat-panel" ng-controller="mainctrl">
+                            <div class="flat-panel" ng-controller="Formctrl">
                                 <div class="flat-panel-header">
                                     <p class="flat-panel-heading" >Opcje formularza</p>
                                 </div>
